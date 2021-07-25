@@ -1,9 +1,20 @@
+import { Link } from 'react-router-dom'
+
 function QuizIndex ({quizzes}) {
 
-    const names = quizzes.map(quiz => quiz.name)    
+    const quizLink = quizzes.map(quiz => {
+        return <Link 
+            to={{
+                pathname: `/quizzes/${quiz.id}`,
+                state: { quiz: quiz }
+            }} 
+            key={quiz.id}>
+                {quiz.name}
+        </Link>
+    })    
     return (
         <div>
-            {names}
+            {quizLink}
         </div>
     )
 }

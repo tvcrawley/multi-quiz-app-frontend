@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
-import '../App.css'
+import './App.css'
 import Signup from './components/Signup'
 import Login from './components/Login'
 import QuizIndex from './components/QuizIndex'
+import QuizShow from './components/QuizShow'
 
 function App() {
 
@@ -31,6 +32,9 @@ function App() {
           <header className="App-header">
             <nav>
               <ul>
+              <li>
+                  <Link to="/">Home</Link>
+                </li>
                 <li>
                   <Link to="/signup">Sign Up</Link>
                 </li>
@@ -44,6 +48,7 @@ function App() {
             </nav>
           </header>
           <Switch>
+
             <Route path="/signup" >
               <Signup />
             </Route>
@@ -52,9 +57,15 @@ function App() {
               <Login />
             </Route>
 
+            <Route exact path="/quizzes/:id"  >
+              <QuizShow />
+            </Route>
+
             <Route path="/quizzes" >
               <QuizIndex quizzes={quizzes} />
             </Route>
+
+
         </Switch>
         <button onClick={() => logout()}>Log Out</button>
       </div>
