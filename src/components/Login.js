@@ -1,7 +1,10 @@
-function login () {
+import { Link } from 'react-router-dom'
+import UserMessage from './UserMessage'
 
-    let loginUser = e => {
-        e.preventDefault()
+function login ({ userMessage, setUserMessage }) {
+
+    const loginUser = event => {
+        event.preventDefault()
 
         fetch("http://localhost:3000/login", {
             method: "POST",
@@ -9,21 +12,24 @@ function login () {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                email: e.target[0].value,
-                password: e.target[1].value
+                email: event.target[0].value,
+                password: event.target[1].value
             })
         })
         .then(res => res.json())
         .then(userInfo => {
             localStorage.token = userInfo.token
             localStorage.userEmail = userInfo.email
+            setUserMessage(["You have successfully logged in"])
         })
     }
 
     return (
         <div>
             <h2>Login</h2>
-            <form onSubmit={e => loginUser(e)}>
+            <UserMessage userMessage={userMessage} />
+
+            <form onSubmit={event => loginUser(event)}>
                 <label>Email</label>
                 <input name="email" type="email" />
 
@@ -32,6 +38,10 @@ function login () {
 
                 <input type="submit" />
             </form>
+            <p>
+                Don't have an account?
+                <Link to="/signup"> Click here to sign up </Link>
+            </p>
         </div>
     )
 }

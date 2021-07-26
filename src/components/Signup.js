@@ -1,7 +1,10 @@
-function Signup () {
+import { Link } from 'react-router-dom'
+import UserMessage from './UserMessage'
 
-    let signUpUser = e => {
-        e.preventDefault()
+function Signup ({ userMessage, setUserMessage }) {
+
+    let signUpUser = event => {
+        event.preventDefault()
 
         fetch("http://localhost:3000/signup", {
             method: "POST",
@@ -9,19 +12,21 @@ function Signup () {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                name: e.target[0].value,
-                email: e.target[1].value,
-                password: e.target[2].value
+                name: event.target[0].value,
+                email: event.target[1].value,
+                password: event.target[2].value
             })
         })
         .then(res => res.json())
-        .then(console.log)
+        .then(() => setUserMessage(["You have successfully signed up. Click the login button to start taking quizzes!"]))
     }
 
     return (
         <div>
             <h2>Sign Up</h2>
-            <form onSubmit={e => signUpUser(e)}>
+            <UserMessage userMessage={userMessage} />
+
+            <form onSubmit={event => signUpUser(event)}>
                 <label>Name</label>
                 <input name="name" type="text" />
 
@@ -33,6 +38,10 @@ function Signup () {
 
                 <input type="submit" />
             </form>
+            <p>
+                Already have an account?
+                <Link to="/login"> Click here to login </Link>
+            </p>
         </div>
     )
 }

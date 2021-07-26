@@ -8,11 +8,13 @@ import QuizCard from './components/QuizCard'
 
 function App() {
 
-  let logout = () => {
+  const logout = () => {
     localStorage.clear()
   }
 
   const [quizzes, setQuizzes] = useState([])
+  const [userMessage, setUserMessage] = useState([])
+
   useEffect(() => {
       fetch("http://localhost:3000/quizzes", {
           method: "GET",
@@ -44,17 +46,19 @@ function App() {
                 <li>
                   <Link to="/quizzes">Quizzes</Link>
                 </li>
+                <li>
+                  <button onClick={() => logout()}>Log Out</button>
+                </li>
               </ul>
             </nav>
           </header>
           <Switch>
-
             <Route path="/signup" >
-              <Signup />
+              <Signup userMessage={userMessage} setUserMessage={setUserMessage}/>
             </Route>
             
             <Route path="/login" >
-              <Login />
+              <Login userMessage={userMessage} setUserMessage={setUserMessage} />
             </Route>
 
             <Route exact path="/quizzes/:id"  >
@@ -67,7 +71,6 @@ function App() {
 
 
         </Switch>
-        <button onClick={() => logout()}>Log Out</button>
       </div>
     </BrowserRouter>
   )

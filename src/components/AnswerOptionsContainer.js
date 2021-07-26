@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import AnswerOptionsCard from './AnswerOptionsCard'
-import ErrorMessage from './ErrorMessage'
+import UserMessage from './UserMessage'
 
 function AnswerOptionsContainer ({ answerOptions }) {
     const [selectedOption, setSelectedOption] = useState('')
-    const [errorMessage, setErrorMessage] = useState([])
+    const [userMessage, setUserMessage] = useState([])
 
     const displayAnswerOptions = answerOptions.map(answerOption => {
     return <AnswerOptionsCard
@@ -12,13 +12,13 @@ function AnswerOptionsContainer ({ answerOptions }) {
                 answerOption={answerOption}
                 selectedOption={selectedOption}
                 setSelectedOption={setSelectedOption}
-                setErrorMessage={setErrorMessage}
+                setUserMessage={setUserMessage}
                 />
     })
 
     return (
         <div>
-            <ErrorMessage errorMessage={errorMessage} />
+            <UserMessage userMessage={userMessage} />
             {displayAnswerOptions}
         </div>
     )
