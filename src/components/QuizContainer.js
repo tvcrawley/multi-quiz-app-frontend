@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-function QuizIndex ({quizzes}) {
+function QuizContainer ({quizzes}) {
 
     const quizLink = quizzes.map(quiz => {
         return <Link 
@@ -19,4 +19,4 @@ function QuizIndex ({quizzes}) {
     )
 }
 
-export default QuizIndex
+export default QuizContainer

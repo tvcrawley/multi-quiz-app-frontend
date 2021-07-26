@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import { useLocation } from 'react-router-dom'
-import Questions from './Questions'
+import QuestionsContainer from './QuestionsContainer'
 
-function QuizShow () {
+function QuizCard () {
     const location = useLocation()
     const { quiz } = location.state
 
@@ -24,9 +24,9 @@ function QuizShow () {
         <div>
             <h3>{quiz.name}</h3>
             <h4>{quiz.description}</h4>
-            <Questions questions={questions}/>
+            <QuestionsContainer questions={questions}/>
         </div>
     )
 }
 
-export default QuizShow
+export default QuizCard

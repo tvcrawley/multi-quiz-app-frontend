@@ -3,8 +3,8 @@ import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 import './App.css'
 import Signup from './components/Signup'
 import Login from './components/Login'
-import QuizIndex from './components/QuizIndex'
-import QuizShow from './components/QuizShow'
+import QuizContainer from './components/QuizContainer'
+import QuizCard from './components/QuizCard'
 
 function App() {
 
@@ -58,11 +58,11 @@ function App() {
             </Route>
 
             <Route exact path="/quizzes/:id"  >
-              <QuizShow />
+              <QuizCard />
             </Route>
 
             <Route path="/quizzes" >
-              <QuizIndex quizzes={quizzes} />
+              <QuizContainer quizzes={quizzes} />
             </Route>
 
 
