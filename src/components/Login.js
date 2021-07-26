@@ -1,7 +1,12 @@
 import { Link } from 'react-router-dom'
 import UserMessage from './UserMessage'
 
-function login ({ userMessage, setUserMessage }) {
+import React from 'react'
+import { makeStyles } from '@material-ui/core/styles'
+import TextField from '@material-ui/core/TextField'
+import Button from '@material-ui/core/Button'
+
+function Login ({ userMessage, setUserMessage }) {
 
     const loginUser = event => {
         event.preventDefault()
@@ -13,31 +18,43 @@ function login ({ userMessage, setUserMessage }) {
             },
             body: JSON.stringify({
                 email: event.target[0].value,
-                password: event.target[1].value
+                password: event.target[2].value
             })
         })
         .then(res => res.json())
-        .then(userInfo => {
-            localStorage.token = userInfo.token
-            localStorage.userEmail = userInfo.email
-            setUserMessage(["You have successfully logged in"])
+        .then(res => {
+            if (res.token) {
+                localStorage.token = res.token
+                localStorage.userEmail = res.email
+                setUserMessage(["You have successfully logged in"])
+            } else {
+                setUserMessage([res.message])
+            }
         })
     }
+
+    const useStyles = makeStyles((theme) => ({
+        root: {
+          '& > *': {
+            margin: theme.spacing(1),
+            width: '25ch',
+          },
+        },
+      }))
+
+      const classes = useStyles()
 
     return (
         <div>
             <h2>Login</h2>
             <UserMessage userMessage={userMessage} />
 
-            <form onSubmit={event => loginUser(event)}>
-                <label>Email</label>
-                <input name="email" type="email" />
-
-                <label>Password</label>
-                <input name="password" type="password" />
-
-                <input type="submit" />
+            <form className={classes.root} autoComplete="off" onSubmit={event => loginUser(event)}>
+                <TextField id="outlined-basic" label="Email" variant="outlined" type="email" />
+                <TextField id="outlined-basic" label="Password" variant="outlined" type="password" />
+                <Button variant="contained" color="primary" type="submit">Login</Button>
             </form>
+
             <p>
                 Don't have an account?
                 <Link to="/signup"> Click here to sign up </Link>
@@ -46,4 +63,4 @@ function login ({ userMessage, setUserMessage }) {
     )
 }
 
-export default login
+export default Login
