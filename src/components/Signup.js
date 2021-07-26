@@ -3,7 +3,7 @@ import UserMessage from './UserMessage'
 
 function Signup ({ userMessage, setUserMessage }) {
 
-    let signUpUser = event => {
+    const signUpUser = event => {
         event.preventDefault()
 
         fetch("http://localhost:3000/signup", {

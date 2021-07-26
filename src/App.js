@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
 import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
 import './App.css'
-import Signup from './components/Signup'
-import Login from './components/Login'
+import AuthContainer from './components/AuthContainer'
 import QuizContainer from './components/QuizContainer'
 import QuizCard from './components/QuizCard'
 import Results from './components/Results'
@@ -14,7 +13,6 @@ function App() {
   }
 
   const [quizzes, setQuizzes] = useState([])
-  const [userMessage, setUserMessage] = useState([])
 
   useEffect(() => {
       fetch("http://localhost:3000/quizzes", {
@@ -35,15 +33,6 @@ function App() {
           <header className="App-header">
             <nav>
               <ul>
-              <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/signup">Sign Up</Link>
-                </li>
-                <li>
-                  <Link to="/login">Login</Link>
-                </li>
                 <li>
                   <Link to="/quizzes">Quizzes</Link>
                 </li>
@@ -54,12 +43,8 @@ function App() {
             </nav>
           </header>
           <Switch>
-            <Route path="/signup" >
-              <Signup userMessage={userMessage} setUserMessage={setUserMessage}/>
-            </Route>
-            
-            <Route path="/login" >
-              <Login userMessage={userMessage} setUserMessage={setUserMessage} />
+          <Route exact path="/" >
+              <AuthContainer />
             </Route>
 
             <Route exact path="/quizzes/:id/results" >
