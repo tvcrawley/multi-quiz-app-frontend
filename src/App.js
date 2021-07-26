@@ -5,6 +5,7 @@ import Signup from './components/Signup'
 import Login from './components/Login'
 import QuizContainer from './components/QuizContainer'
 import QuizCard from './components/QuizCard'
+import Results from './components/Results'
 
 function App() {
 
@@ -61,6 +62,10 @@ function App() {
               <Login userMessage={userMessage} setUserMessage={setUserMessage} />
             </Route>
 
+            <Route exact path="/quizzes/:id/results" >
+              <Results />
+            </Route>
+
             <Route exact path="/quizzes/:id"  >
               <QuizCard />
             </Route>
@@ -68,7 +73,6 @@ function App() {
             <Route path="/quizzes" >
               <QuizContainer quizzes={quizzes} />
             </Route>
-
 
         </Switch>
       </div>

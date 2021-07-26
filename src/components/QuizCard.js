@@ -24,7 +24,7 @@ function QuizCard () {
         <div>
             <h3>{quiz.name}</h3>
             <h4>{quiz.description}</h4>
-            <QuestionsContainer questions={questions}/>
+            <QuestionsContainer questions={questions} quiz={quiz} />
         </div>
     )
 }
