@@ -16,6 +16,7 @@ function login () {
         .then(res => res.json())
         .then(userInfo => {
             localStorage.token = userInfo.token
+            localStorage.userEmail = userInfo.email
         })
     }
 

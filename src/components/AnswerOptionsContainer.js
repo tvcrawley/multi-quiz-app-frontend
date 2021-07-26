@@ -1,25 +1,16 @@
 import { useState } from 'react'
+import AnswerOptionsCard from './AnswerOptionsCard'
 
 function AnswerOptionsContainer ({ answerOptions }) {
     const [selectedOption, setSelectedOption] = useState('')
 
-    const onHandleChange = event => {
-        setSelectedOption(event.target.value)
-    }
-
     const displayAnswerOptions = answerOptions.map(answerOption => {
-        return <div key={answerOption.id}>
-            <label>
-            <input
-                type="radio"
-                name={answerOption.answer_text}
-                value={answerOption.answer_text}
-                onChange={onHandleChange}
-                checked={selectedOption === answerOption.answer_text }
-            />
-            {answerOption.answer_text}
-            </label>
-        </div>        
+    return <AnswerOptionsCard
+                key={answerOption.id}
+                answerOption={answerOption}
+                selectedOption={selectedOption}
+                setSelectedOption={setSelectedOption}
+                />
     })
 
     return (
