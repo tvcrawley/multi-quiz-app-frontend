@@ -1,4 +1,4 @@
-function AnswerOptionCard ({ answerOption, selectedOption, setSelectedOption }) {
+function AnswerOptionCard ({ answerOption, selectedOption, setSelectedOption, setErrorMessage }) {
     const onHandleChange = event => {
         fetch("http://localhost:3000/question_responses", {
             method: "POST",
@@ -14,7 +14,7 @@ function AnswerOptionCard ({ answerOption, selectedOption, setSelectedOption }) 
         .then(res => res.json())
         .then(res => {
             if (res.id) setSelectedOption(event.target.value)
-            else console.log(res)
+            else setErrorMessage(res)
         })
     }
 
