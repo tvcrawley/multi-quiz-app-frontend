@@ -8,6 +8,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
 function Signup ({ userMessage, setUserMessage }) {
+    let color = ''
 
     const signUpUser = event => {
         event.preventDefault()
@@ -27,8 +28,10 @@ function Signup ({ userMessage, setUserMessage }) {
         .then(res => {
             if (res.id) {
                 setUserMessage(["You have successfully signed up. Click the login button to start taking quizzes!"])
+                color = "green"
             } else {
                 setUserMessage([res.error])
+                color = "red"
             }
         })
     }
@@ -47,7 +50,7 @@ function Signup ({ userMessage, setUserMessage }) {
     return (
         <div>
             <h2>Sign Up</h2>
-            <UserMessage userMessage={userMessage} />
+            <UserMessage userMessage={userMessage} color={color}/>
 
 
             <form className={classes.root} autoComplete="off" onSubmit={event => signUpUser(event)}>

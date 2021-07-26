@@ -18,7 +18,7 @@ function AnswerOptionsContainer ({ answerOptions }) {
 
     return (
         <div>
-            <UserMessage userMessage={userMessage} />
+            <UserMessage userMessage={userMessage} color="red"/>
             {displayAnswerOptions}
         </div>
     )

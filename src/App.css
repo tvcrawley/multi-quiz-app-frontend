@@ -2,3 +2,24 @@ img {
     width: 200px;
     height: auto;
 }
+
+h3, h4 {
+    text-align: center;
+}
+
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+a, a:visited {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+a:hover {
+    color: #3f51b5;
+}

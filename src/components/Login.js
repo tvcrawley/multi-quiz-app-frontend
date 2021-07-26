@@ -7,6 +7,7 @@ import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
 
 function Login ({ userMessage, setUserMessage }) {
+    let color = ''
 
     const loginUser = event => {
         event.preventDefault()
@@ -27,8 +28,10 @@ function Login ({ userMessage, setUserMessage }) {
                 localStorage.token = res.token
                 localStorage.userEmail = res.email
                 setUserMessage(["You have successfully logged in"])
+                color = "green"
             } else {
                 setUserMessage([res.message])
+                color = "red"
             }
         })
     }
@@ -47,7 +50,7 @@ function Login ({ userMessage, setUserMessage }) {
     return (
         <div>
             <h2>Login</h2>
-            <UserMessage userMessage={userMessage} />
+            <UserMessage userMessage={userMessage} color={color}/>
 
             <form className={classes.root} autoComplete="off" onSubmit={event => loginUser(event)}>
                 <TextField id="outlined-basic" label="Email" variant="outlined" type="email" />

@@ -17,11 +17,10 @@ import './App.css'
 function App() {
   const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
+      flexGrow: 1
     },
     paper: {
       padding: theme.spacing(2),
-      // textAlign: 'center',
       color: theme.palette.text.secondary,
     },
   }))
@@ -53,7 +52,7 @@ function App() {
           <Grid item xs={12}>
             <Paper className={classes.paper}>
               <Navbar />
-              Multi Quiz App
+              <h3>Multi Quiz App</h3>
             </Paper>
           </Grid>
         </Grid>
